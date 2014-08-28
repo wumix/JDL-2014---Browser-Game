@@ -1,30 +1,27 @@
 <?php
-error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+// File: index.php
+// Author: makingbrowsergames.com
+// Basic Tutorial
+ 
+require_once('includes/header.php');
+ 
+must_login();
 
-session_start();
-if($_SESSION['logged']==false){
-if(isset($_POST["submit"])){
+$player['health']    = getPlayerStat('health');
+$player['maxHealth'] = getPlayerStat('health_max');
+$player['energy']    = getPlayerStat('energy');
+$player['maxEnergy'] = getPlayerStat('energy_max');
+$player['str']       = getPlayerStat('str');
+$player['dex']       = getPlayerStat('dex');
+$player['int']       = getPlayerStat('int');
+$player['money']     = getPlayerStat('money');
 
-	$myusername=$_POST['user'];
-	$mypasswordnc=$_POST['pass'];
+$player['pet']       = getPlayerStat('pet');
+if ($player['pet'])
+{
+  require_once('includes/constants/items.php');
+  $player['pet'] = $items[$player['pet']];
+} // if pet
 
-	if($mypasswordnc == "pass" && $myusername == "user"){
-		$_SESSION['logged']=true;
-			echo "te-ai logat!";
-			header("location:logged.php");
-
-	}
-}}
-else
-header("location:logged.php");
-?>
-
-<form role="form" method="post">
-				  		
-						<label for="exampleInputEmail1">Username</label>
-						<input name="user" type="text"  id="exampleInputUser1" placeholder="Enter username">
-						<label for="exampleInputPassword1">Password</label>
-						<input name="pass" type="password" id="exampleInputPassword1" placeholder="Password">
-				  	</div>
-				  <button name="submit" type="submit">Login</button>
-</form>
+$templateVariables["display"] = "index.tpl";
+require_once("includes/footer.php");
