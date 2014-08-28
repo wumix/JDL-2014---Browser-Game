@@ -2,9 +2,13 @@
 // File: header.php
 // Author: makingbrowsergames.com
 // Basic Tutorial
+<<<<<<< HEAD
 
 error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
+=======
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+>>>>>>> origin/master
 require('includes/smarty/Smarty.class.php');
 $smarty = new Smarty();
 
